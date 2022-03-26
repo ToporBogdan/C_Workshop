@@ -27,6 +27,28 @@ int isPrime(int numar)
 }
 
 
+void mySwitch(int a, int b)
+{
+    int c;
+    c = a;
+    a = b;
+    b = c;
+}
+
+void mySwitchPointer(int* a, int* b)
+{
+    int c;
+    c = *a;
+    *a = *b;
+    *b = c;
+}
+void mySwitchPointerDoi(int** a, int** b)
+{
+    int *c;
+    c = *a;
+    *a = *b;
+    *b = c;
+}
 
 int main(int argc, char const *argv[])
 {
@@ -45,9 +67,44 @@ int main(int argc, char const *argv[])
     // printf("mama\b");
 
     // printf("%d", functia(48));
-    printf("%d", isPrime(atoi(argv[1])));
+    // printf("%d", isPrime(atoi(argv[1])));
 
+    // int y = 10;
+    // printf("Adresa lui y este %x\n", &y);
 
+    // int* z = (int*)malloc(1 * sizeof(int));
+    // *z = 20;
+    // printf("Adresa este: %x, iar valoarea este: %d\n", z, *z);
+
+    // int nr_1 = 100;
+    // int nr_2 = 12112;
+    // printf("Primul nr este: %d, al doilea este: %d\n", nr_1, nr_2);
+    // mySwitch(nr_1, nr_2);
+    // printf("Primul nr este: %d, al doilea este: %d\n", nr_1, nr_2);
+
+    int* nr_1;
+    nr_1 = (int*)malloc(1 * sizeof(int));
+    *nr_1 = 100;
+
+    int* nr_2;
+    nr_2 = (int*)malloc(1 * sizeof(int)); 
+    *nr_2 = 12112;
+    
+    // printf("Primul nr este: %d, al doilea este: %d\n", *nr_1, *nr_2);
+    // mySwitchPointer(nr_1, nr_2);
+    // printf("Primul nr este: %d, al doilea este: %d\n", *nr_1, *nr_2);
+
+    int **nr_1_addr = (int**)malloc(1 * sizeof(int*));
+    *nr_1_addr = nr_1;
+
+    int **nr_2_addr = (int**)malloc(1 * sizeof(int*));
+    *nr_2_addr = nr_2;
+
+    printf("%d %d\n", **nr_1_addr, **nr_2_addr);
+    mySwitchPointerDoi(nr_1_addr, nr_2_addr);
+    printf("%d %d\n", **nr_1_addr, **nr_2_addr);
+
+    // printf("Primul nr este: %d, al doilea este: %d\n", *nr_1, *nr_2);
     return 0;
 }
 
