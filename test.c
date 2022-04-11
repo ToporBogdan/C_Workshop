@@ -116,7 +116,7 @@ VOCABULAR
 \t - tab - baga un tab in textul respectiv de dimensiune cat e tabul predefinit
 \r - carry row - pe win tr sa pui \r\n
 \s - space (un spatiu)
-\b - sterge un char din strinigul unde am pus \b si ma muta cu cursorul o poz inainte (adica backspace) 
+\b - sterge un char din stringul unde am pus \b si ma muta cu cursorul o poz inainte (adica backspace) 
 \a - comunici cu "soneria" din calculator
 
 */
