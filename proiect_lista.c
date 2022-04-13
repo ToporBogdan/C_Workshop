@@ -3,7 +3,7 @@
 
 /*
     addNodeInList - primeste lista, un numar si o pozitie si adauga numarul respectiv pe pozitia dorita in lista
-    removeNodeFromList - primeste lista, un numar si o pozitie si sterge numarul respectiv pe pozitia dorita in lista
+    removeNodeFromList - primeste lista si o pozitie si sterge numarul respectiv pe pozitia dorita in lista
     isValueInList - primeste lista si un numar si verifica daca exista numarul in lista
     printList - primeste lista si printeaza toate numerele din ea
     freeList - primeste lista si elibereaza toata memoria alocata dinamic aferenta ei
@@ -34,12 +34,15 @@ void printList(ListNode *head)
     printf("\n");
 }
 
-ListNode *getNewItem(const int value)
+ListNode* getNewItem(const int value)
 {
     ListNode *NewItem = NULL;
+
     NewItem = (ListNode*)malloc(1 * sizeof(ListNode));
+    
     NewItem->value = value;
     NewItem->nextItem = NULL;
+    
     return NewItem; 
 }
 
@@ -60,7 +63,7 @@ ListNode* addNodeInList(ListNode* head, const int number, const int poz)
     ListNode* addedNumber;
     addedNumber = getNewItem(number);
 
-    while (traverse == NULL)
+    if (traverse == NULL)
     {
         head = addedNumber;
     }
@@ -125,28 +128,32 @@ ListNode* removeNodeFromList(ListNode* head, const int poz)
     return head;
 }
 
-void isValueInList(ListNode* head, const int number)
+int isValueInList(ListNode* head, const int number)
 {
-    ListNode* traverse;
-    traverse = head;
-    int NodePos = 1;
-    int check = 0;
-    while (traverse != NULL)
+    // ListNode* traverse;
+    // traverse = head;
+    // int NodePos = 1;
+    // int check = 0;
+
+    while (head != NULL)
     {
-        if (traverse->value == number)
+        if (head->value == number)
         {
-            printf("The value %d is present in the list, on the %d position \n", number, NodePos);
-            check = 1;
+            // printf("The value %d is present in the list, on the %d position \n", number, NodePos);
+            // check = 1;
+            return 1;
         }
-        traverse = traverse->nextItem;
-        NodePos = NodePos + 1;
+        head = head->nextItem;
+        // NodePos = NodePos + 1;
 
     }
-    if (check == 0)
-    {
-        printf("The number %d is not in this list \n", number);
-    }
+
+    // if (check == 0)
+    // {
+        // printf("The number %d is not in this list \n", number);
+    // }
     
+    return 0;
 }
 
 void freeList(ListNode* head)
@@ -169,7 +176,7 @@ void freeList(ListNode* head)
 int main(int argc, char const *argv[])
 {
     ListNode *n1, *n2, *n3, *n4, *n5;
-    ListNode *head;
+    ListNode *head = NULL;
 
     n1 = getNewItem(12);
     n2 = getNewItem(24);
@@ -185,21 +192,19 @@ int main(int argc, char const *argv[])
     n1->nextItem = NULL;
 
 
+    // printList(head);
+
+    // ListNode* testADD;
+    head = addNodeInList(head, 99, 6);
     printList(head);
 
-    ListNode* testADD;
-    testADD = addNodeInList(head, 99, 6);
-    printList(testADD);
+    // ListNode* testRemove;
+    head = removeNodeFromList(head, 1);
+    printList(head);
 
-    ListNode* testRemove;
-    testRemove = removeNodeFromList(head, 4);
-    printList(testRemove);
-
-    isValueInList(head, 333);
-
+    // printf("%s\n", isValueInList(head, 333) ? "e in lista" : "nu e in lista");
+    // printf("%s\n", isValueInList(head, 31) ? "e in lista" : "nu e in lista");
     freeList(head);
-
-
 
 
     return 0;
